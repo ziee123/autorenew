@@ -1,0 +1,16 @@
+name: Auto Renew Acore
+on:
+  schedule:
+    - cron: '0 */6 * * *' # jalan tiap 6 jam
+  workflow_dispatch:
+
+jobs:
+  renew:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install puppeteer
+      - run: node renew.js
